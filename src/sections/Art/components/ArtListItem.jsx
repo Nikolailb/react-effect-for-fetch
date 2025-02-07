@@ -1,15 +1,17 @@
 import { baseUrl } from "../../utils/misc";
 import PublicationHistoryList from "./PublicationHistoryList";
 
-function ArtListItem({ item }) {
+function ArtListItem({
+  item: { imageURL, title, artist, publicationHistory },
+}) {
   return (
     <li>
       <div className="frame">
-        <img src={new URL(item.imageURL, baseUrl).href} alt={item.title} />
+        <img src={new URL(imageURL, baseUrl).href} alt={title} />
       </div>
-      <h3>{item.title}</h3>
-      <p>Artist: {item.artist}</p>
-      <PublicationHistoryList history={item.publicationHistory} />
+      <h3>{title}</h3>
+      <p>Artist: {artist}</p>
+      <PublicationHistoryList history={publicationHistory} />
     </li>
   );
 }

@@ -1,11 +1,12 @@
-function UsersListItem({ user }) {
-  const fullName = `${user.firstName} ${user.lastName}`;
-  console.log(fullName, user);
+function UsersListItem({
+  user: { firstName, lastName, favouriteColour, profileImage, email },
+}) {
+  const fullName = `${firstName} ${lastName}`;
   return (
-    <li style={{ background: user.favouriteColour }}>
-      <img src={user.profileImage} alt={fullName} />
+    <li style={{ background: favouriteColour }}>
+      <img src={profileImage} alt={fullName} />
       <h3>{fullName}</h3>
-      <p>Email: {user.email}</p>
+      <p>Email: {email}</p>
     </li>
   );
 }
