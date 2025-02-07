@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import AdviceSlip from "./components/AdviceSlip";
+import FavouriteSlipsList from "./components/FavouriteSlipsList";
 
 function AdviceSection() {
   const [favouriteAdvice, setFavouriteAdvice] = useState([]);
@@ -14,7 +16,12 @@ function AdviceSection() {
         }
         return res.json();
       })
-      .then((data) => setCurrentAdvice(data));
+      .then((data) => setCurrentAdvice(data.slip.advice));
+  };
+
+  const saveToFavourties = () => {
+    if (favouriteAdvice.includes(currentAdvice)) return;
+    setFavouriteAdvice((a) => [...a, currentAdvice]);
   };
 
   useEffect(getRandomAdvice, []);
@@ -22,8 +29,16 @@ function AdviceSection() {
   return (
     <section>
       <h2>Advice Section</h2>
-      <section className="adivce-slip"></section>
-      <section className="favourtite-slips-list"></section>
+      <section className="adivce-slip">
+        <AdviceSlip
+          advice={currentAdvice}
+          getRandomAdvice={getRandomAdvice}
+          saveToFavourties={saveToFavourties}
+        />
+      </section>
+      <section className="favourtite-slips-list">
+        <FavouriteSlipsList favourites={favouriteAdvice} />
+      </section>
     </section>
   );
 }

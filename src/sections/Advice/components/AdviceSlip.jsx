@@ -1,10 +1,4 @@
-function AdviceSlip({
-  adviceSlip: {
-    slip: { advice },
-  },
-  getRandomAdvice,
-  saveToFavourties,
-}) {
+function AdviceSlip({ advice, getRandomAdvice, saveToFavourties }) {
   return (
     <>
       <h3>Some Advice</h3>
